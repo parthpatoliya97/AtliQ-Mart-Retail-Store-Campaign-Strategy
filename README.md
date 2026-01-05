@@ -446,7 +446,7 @@ ORDER BY
 
 #### 18.) Campaign-wise Product Performance
 ```sql
-WWITH campaign_product_metrics AS (
+WITH campaign_product_metrics AS (
     SELECT
         campaign_name,
         product_name,
