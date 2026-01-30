@@ -1,4 +1,11 @@
-# Retail-Store-Campaign-Strategy
+# AtliQ Mart - Festive Promotions Analysis
+
+- AtliQ Mart is a leading retail chain with over 50 supermarkets across South India. During the festive seasons of Diwali 2023 and Sankranti 2024, all stores launched large-scale promotional campaigns exclusively on AtliQ-branded products.
+
+- The objective of these campaigns was to drive higher sales volumes and revenue during peak festive demand. the Sales Director, required immediate insights to understand which promotions performed well and which did not, enabling data-driven decisions for future promotional planning.
+
+- This project evaluates the performance of promotional strategies by analyzing sales data across campaigns, stores, products, and promotion types. The study focuses on key metrics such as Incremental Revenue (IR), Incremental Sold Units (ISU), and promotion effectiveness to identify patterns, strengths, and gaps.
+
 
 #### Sales Summary View
 ```sql
