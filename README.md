@@ -26,11 +26,12 @@
 ------------------------------
 
 #### Recommendations :
-- Scale BOGOF for volume-driven categories.
-- Use Cashback offers for high-value products.
-- Reduce reliance on flat discount strategies.
-- Replicate best-performing store strategies across low-performing cities.
-
+ - Prioritize Bengaluru, Chennai, and Mysuru for premium & experimental promotions.
+ - Scale 500 Cashback for high-value & bundled products.
+ - Use BOGOF selectively for volume-driven categories & inventory clearance.
+ - Reduce dependency on flat percentage discounts.
+ - Rework product mix & promotion strategy in low-performing cities.
+ - Focus festive campaigns on combo packs, grocery & utility products.
 ------------------------------------------
 
 ### SQL Queries :
