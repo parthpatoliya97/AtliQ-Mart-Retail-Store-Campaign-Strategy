@@ -5,8 +5,35 @@
 - The objective of these campaigns was to drive higher sales volumes and revenue during peak festive demand. the Sales Director, required immediate insights to understand which promotions performed well and which did not, enabling data-driven decisions for future promotional planning.
 
 - This project evaluates the performance of promotional strategies by analyzing sales data across campaigns, stores, products, and promotion types. The study focuses on key metrics such as Incremental Revenue (IR), Incremental Sold Units (ISU), and promotion effectiveness to identify patterns, strengths, and gaps.
+----------------
+### Key Insights :
+#### Store Performance Analysis :
+- Bengaluru emerged as the top-performing city with the highest incremental revenue.
+- Chennai & Mysuru consistently ranked among the top stores.
+- Cities like Vijayawada & Trivandrum underperformed indicating execution gaps.
+
+#### Promotion Type Analysis :
+- BOGOF (Buy One Get One Free) drove the highest growth in sold units.
+- 500 Cashback delivered the strongest incremental revenue.
+- Flat discounts (25%, 33%, 50% OFF) showed negative revenue impact - even when units increased.
 
 
+#### Product & Category Analysis :
+- Combo packs generated the highest incremental revenue.
+- Grocery & Staples led in incremental sold units, especially during Sankranti.
+- Personal Care underperformed across both campaigns.
+  
+------------------------------
+
+#### Recommendations :
+- Scale BOGOF for volume-driven categories.
+- Use Cashback offers for high-value products.
+- Reduce reliance on flat discount strategies.
+- Replicate best-performing store strategies across low-performing cities.
+
+------------------------------------------
+
+### SQL Queries :
 #### Sales Summary View
 ```sql
 CREATE VIEW `sales_summary` AS
@@ -102,7 +129,7 @@ JOIN
 WHERE
     f.promo_type = 'BOGOF' AND f.base_price > 500;
 ```
-
+![first_image](https://github.com/parthpatoliya97/AtliQ-Mart-Retail-Store-Campaign-Strategy/blob/main/Images/1.png?raw=true)
 
 
 
@@ -115,7 +142,7 @@ FROMdim_stores
 GROUP BY city 
 ORDER BY total_stores DESC;
 ```
-
+![second_image](https://github.com/parthpatoliya97/AtliQ-Mart-Retail-Store-Campaign-Strategy/blob/main/Images/2.png?raw=true)
 
 
 
@@ -131,7 +158,7 @@ SELECT
 FROM sales_summary
 GROUP BY campaign_name;
 ```
-
+![third_image](https://github.com/parthpatoliya97/AtliQ-Mart-Retail-Store-Campaign-Strategy/blob/main/Images/3.png?raw=true)
 
 
 #### 4.) Diwali & Sankranti Campaign ISU% Analysis
@@ -156,7 +183,7 @@ FROM
     ) AS subquery;
 
 ```
-
+![fourth_one](https://github.com/parthpatoliya97/AtliQ-Mart-Retail-Store-Campaign-Strategy/blob/main/Images/4_1.png?raw=true)
 
 ```sql
 --- For Sankranti Campaign
@@ -179,7 +206,7 @@ FROM
     ) AS subquery;
 
 ```
-
+![fourth_two](https://github.com/parthpatoliya97/AtliQ-Mart-Retail-Store-Campaign-Strategy/blob/main/Images/4_2.png?raw=true)
 
 
 
@@ -199,7 +226,7 @@ ORDER BY
     `IR%` DESC
 LIMIT 5;
 ```
-
+![five_image](https://github.com/parthpatoliya97/AtliQ-Mart-Retail-Store-Campaign-Strategy/blob/main/Images/5.png?raw=true)
 
 #### 6.) Which cities generated the highest Incremental Revenue (IR) during promotional campaigns?
 ```sql
@@ -216,7 +243,7 @@ GROUP BY
 ORDER BY
     SUM(IR) DESC;
 ```
-
+![six_image](https://github.com/parthpatoliya97/AtliQ-Mart-Retail-Store-Campaign-Strategy/blob/main/Images/6.png?raw=true)
 
 #### 7.) Top 10 store based on incremental revenue
 
@@ -238,7 +265,7 @@ ORDER BY
     SUM(IR) DESC
 LIMIT 10;
 ```
-
+![seven_image](https://github.com/parthpatoliya97/AtliQ-Mart-Retail-Store-Campaign-Strategy/blob/main/Images/7.png?raw=true)
 
 #### 8.) Bottom 10 store based on incremental sold units
 ```sql
@@ -258,27 +285,10 @@ ORDER BY
     SUM(ISU) ASC
 LIMIT 10;
 ```
-
-#### 9.) All the stores with and their incremental revenue & incremental sold units
-```sql
-SELECT
-    store_id,
-    city,
-    SUM(quantity_sold_before_promo) as quantity_sold_before,
-    SUM(quantity_sold_after_promo) as quantity_sold_after,
-    SUM(ISU) AS ISU,
-    CONCAT(ROUND(SUM(revenue_before_promo)/1000000,2),"M") AS revenue_before,
-    CONCAT(ROUND(SUM(revenue_after_promo)/1000000,2),"M") AS revenue_after,
-    CONCAT(ROUND(SUM(IR)/1000000,2),"M") AS IR
-FROM
-    sales_summary
-GROUP BY
-    city, Store_id
-ORDER BY city,revenue_after DESC;
-```
+![eight_image](https://github.com/parthpatoliya97/AtliQ-Mart-Retail-Store-Campaign-Strategy/blob/main/Images/8.png?raw=true)
 
 
-#### 10.) Promotion typs and its incremental sold units
+#### 9.) Promotion typs and its incremental sold units
 ```sql
 SELECT
     promo_type,
@@ -292,11 +302,11 @@ GROUP BY
     promo_type
 ORDER BY `ISU%` DESC
 ```
+![nine_image](https://github.com/parthpatoliya97/AtliQ-Mart-Retail-Store-Campaign-Strategy/blob/main/Images/9.png?raw=true)
 
 
 
-
-#### 11.) Promotion types and its incremental revenue
+#### 10.) Promotion types and its incremental revenue
 ```sql
 SELECT
     promo_type,
@@ -310,9 +320,10 @@ GROUP BY
     promo_type
 ORDER BY `IR%` DESC
 ```
+![ten_image](https://github.com/parthpatoliya97/AtliQ-Mart-Retail-Store-Campaign-Strategy/blob/main/Images/10.png?raw=true)
 
 
-#### 12.) Promotion types with its incremental revenue, incremental sold units
+#### 11.) Promotion types with its incremental revenue, incremental sold units
 ```sql
 SELECT
     promo_type,
@@ -324,10 +335,10 @@ GROUP BY
     promo_type
 ORDER BY IR DESC,ISU DESC
 ```
+![eleven_image](https://github.com/parthpatoliya97/AtliQ-Mart-Retail-Store-Campaign-Strategy/blob/main/Images/11.png?raw=true)
 
 
-
-#### 13.) Product category and its incremental revenue
+#### 12.) Product category and its incremental revenue
 
 ```sql
 SELECT
@@ -343,9 +354,9 @@ GROUP BY
 ORDER BY
     incremental_revenue DESC;
 ```
+![twelve_image](https://github.com/parthpatoliya97/AtliQ-Mart-Retail-Store-Campaign-Strategy/blob/main/Images/12.png?raw=true)
 
-
-#### 14.) Product category - incremental sold units
+#### 13.) Product category - incremental sold units
 ```sql
 SELECT
     category,
@@ -360,10 +371,10 @@ GROUP BY
 ORDER BY
     incremental_sold_units DESC;
 ```
+![thirteen_image](https://github.com/parthpatoliya97/AtliQ-Mart-Retail-Store-Campaign-Strategy/blob/main/Images/13.png?raw=true)
 
 
-
-#### 15.) Top 3 & bottom 3 product based on incremental revenue
+#### 14.) Top 3 & bottom 3 product based on incremental revenue
 ```sql
 WITH product_revenue AS (
     SELECT
@@ -383,8 +394,10 @@ FROM product_revenue
 WHERE top_rank <= 3 OR bottom_rank <= 3
 ORDER BY IR DESC;
 ```
+![fourteen_image](https://github.com/parthpatoliya97/AtliQ-Mart-Retail-Store-Campaign-Strategy/blob/main/Images/14.png?raw=true)
 
-#### 16.) Top 3 & bottom 3 products based on incremental sold units
+
+#### 15.) Top 3 & bottom 3 products based on incremental sold units
 ```sql
 WITH product_revenue AS (
     SELECT
@@ -404,12 +417,12 @@ FROM product_revenue
 WHERE top_rank <= 3 OR bottom_rank <= 3
 ORDER BY ISU DESC;
 ```
+![fifteen_image](https://github.com/parthpatoliya97/AtliQ-Mart-Retail-Store-Campaign-Strategy/blob/main/Images/15.png?raw=true)
 
 
 
 
-
-#### 17.) Each campaign high performing stores
+#### 16.) Each campaign high performing stores
 
 ```sql
 WITH store_campaign_metrics AS (
@@ -450,8 +463,11 @@ ORDER BY
     campaign_name,
     store_rank;
 ```
+![sixteen_image](https://github.com/parthpatoliya97/AtliQ-Mart-Retail-Store-Campaign-Strategy/blob/main/Images/16_1.png?raw=true)
+![sixteen_image](https://github.com/parthpatoliya97/AtliQ-Mart-Retail-Store-Campaign-Strategy/blob/main/Images/16_2.png?raw=true)
 
-#### 18.) Campaign-wise Product Performance
+
+#### 17.) Campaign-wise Product Performance
 ```sql
 WITH campaign_product_metrics AS (
     SELECT
@@ -493,3 +509,4 @@ ORDER BY
     product_rank;
 
 ```
+![17_image](https://github.com/parthpatoliya97/AtliQ-Mart-Retail-Store-Campaign-Strategy/blob/main/Images/17.png?raw=true)
